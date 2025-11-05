@@ -1,12 +1,68 @@
-# React + Vite
+# LMS API (Express + MongoDB)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Learning Management System (LMS) backend built with **Node.js, Express, and MongoDB Atlas**.  
+It supports **user authentication**, **course management**, **assignments**, and **submissions**, and was created as part of the COMP229 / Project Part 2 – First Release.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+This project provides a RESTful API for an LMS scenario:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- instructors can create courses and publish assignments
+- students can submit work
+- all sensitive actions are protected by authentication (JWT + httpOnly cookie)
+
+This repository contains the **backend** part. A simple frontend (React/Vite) can consume these endpoints.
+
+---
+
+## Features
+
+- User registration, login, logout
+- Get current user (`/api/auth/me`)
+- Course CRUD (`/api/courses`)
+- Assignment CRUD (`/api/assignments`)
+- Submission CRUD (`/api/submissions`)
+- Protected routes with middleware (`requireAuth`)
+- MongoDB Atlas connection
+- Thunder/Postman friendly JSON APIs
+
+---
+
+## Tech Stack
+
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Database:** MongoDB Atlas (Mongoose)
+- **Auth:** JWT (stored in httpOnly cookie)
+- **Tools:** Thunder Client / Postman
+- **Package manager:** yarn / npm
+
+---
+
+## Project Structure
+
+```text
+.
+├── server.js
+└── server
+    ├── config
+    │   └── db.js
+    ├── models
+    │   ├── User.js
+    │   ├── Course.js
+    │   ├── Assignment.js
+    │   └── Submission.js
+    ├── controllers
+    │   ├── authController.js
+    │   ├── courseController.js
+    │   ├── assignmentController.js
+    │   └── submissionController.js
+    ├── routes
+    │   ├── authRoutes.js
+    │   ├── courseRoutes.js
+    │   ├── assignmentRoutes.js
+    │   └── submissionRoutes.js
+    └── middleware
+        └── requireAuth.js
