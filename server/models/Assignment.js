@@ -1,18 +1,24 @@
-import mongoose from 'mongoose';
+// server/models/Assignment.js
+import mongoose from "mongoose";
 
-const AssignmentSchema = new mongoose.Schema(
+const assignmentSchema = new mongoose.Schema(
   {
-
+    title: { type: String, required: true },
+    description: String,
     course: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Course',
-      required: true
+      ref: "Course",
+      required: true,
     },
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    dueDate: { type: Date }
+    teacher: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    dueDate: Date,
   },
   { timestamps: true }
 );
 
-export default mongoose.model('Assignment', AssignmentSchema);
+const Assignment = mongoose.model("Assignment", assignmentSchema);
+export default Assignment;

@@ -1,18 +1,26 @@
-import mongoose from 'mongoose';
+// server/models/Course.js
+import mongoose from "mongoose";
 
-const CourseSchema = new mongoose.Schema(
+const courseSchema = new mongoose.Schema(
   {
-
     title: { type: String, required: true },
+    description: { type: String },
 
-    description: { type: String, required: true },
+    teacher: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
 
-    instructor: { type: String, required: true },
-
-    startDate: { type: Date },
-    endDate: { type: Date }
+    students: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
 );
 
-export default mongoose.model('Course', CourseSchema);
+const Course = mongoose.model("Course", courseSchema);
+export default Course;

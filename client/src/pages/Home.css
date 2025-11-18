@@ -1,0 +1,38 @@
+.home-page {
+  max-width: 800px;
+  margin:50px auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.home-page ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.home-page li {
+  margin: 1rem 0;
+}
+
+.home-page a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.home-page a:hover {
+  color: #7baaff;
+}
+h1 {
+  font-size: 5.5rem;
+  margin-bottom: 1rem;
+}
+h2 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+h3 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}

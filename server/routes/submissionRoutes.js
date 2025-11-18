@@ -1,25 +1,25 @@
-import { Router } from 'express';
+// server/routes/submissionRoutes.js
+import { Router } from "express";
 import {
-  getAllSubmissions,
-  getSubmissionById,
   createSubmission,
-  updateSubmission,
-  deleteSubmission,
-  deleteAllSubmissions
-} from '../controllers/submissionController.js';
-import requireAuth from '../middleware/requireAuth.js';
+  getAllSubmissions,
+  getSubmissionsByAssignment,
+  gradeSubmission,
+} from "../controllers/submissionController.js";
+import requireAuth from "../middleware/requireAuth.js";
 
 const router = Router();
 
-router.get('/', getAllSubmissions);
-router.get('/:id', getSubmissionById);
+// 学生提交
+router.post("/", requireAuth, createSubmission);
 
+// 老师看所有（可选）
+router.get("/", requireAuth, getAllSubmissions);
 
-router.post('/', requireAuth, createSubmission);
+// 按 assignment 查看提交（老师看到所有，学生只能看到自己）
+router.get("/assignment/:assignmentId", requireAuth, getSubmissionsByAssignment);
 
-
-router.put('/:id', requireAuth, updateSubmission);
-router.delete('/:id', requireAuth, deleteSubmission);
-router.delete('/', requireAuth, deleteAllSubmissions);
+// 老师评分 / 评语
+router.patch("/:id", requireAuth, gradeSubmission);
 
 export default router;
