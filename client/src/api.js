@@ -1,11 +1,18 @@
 // client/src/api.js
 import axios from "axios";
 
+
+const isLocalhost =
+  typeof window !== "undefined" && window.location.hostname === "localhost";
+
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: isLocalhost
+    ? "http://localhost:5000/api"                         
+    : "https://project-lms-lhlq.onrender.com/api",        
+  withCredentials: true, 
 });
 
-// 自动带上 token
+
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
