@@ -1,4 +1,3 @@
-// server/express.js
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -13,10 +12,23 @@ import submissionRoutes from "./routes/submissionRoutes.js";
 
 const app = express();
 
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://studyboxlms.netlify.app",
+];
+
 app.use(
   cors({
-    origin: true,      
-    credentials: true, 
+    origin: (origin, callback) => {
+  
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, origin);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
 );
 
