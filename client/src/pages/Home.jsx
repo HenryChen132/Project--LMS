@@ -23,19 +23,23 @@ export default function Home() {
   return (
     <div className="home-page">
       <img
-        src="/Picture1.jpg" // public 下的图片，前面不要加 /public
+        src="/Picture1.jpg" 
         alt="STUDY BOX Logo"
         style={{ width: "300px", margin: "20px auto", display: "block" }}
       />
 
       <h1>STUDY BOX</h1>
       <h3>Welcome to STUDY BOX!</h3>
+      <p style={{ marginTop: "16px" }}>
+  This paragraph was added to demonstrate the CI/CD pipeline (GitHub → Netlify).
+</p>
+
       <hr />
       <h3>Public Courses</h3>
       <ul>
         {courses.map((course) => (
           <li key={course._id}>
-            {/* 点击进入课程详情页 */}
+            {/* enter course details */}
             <Link to={`/courses/${course._id}`}>{course.title}</Link>
           </li>
         ))}
